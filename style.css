@@ -1,0 +1,18 @@
+/* 設定整頁背景 */
+body, html {
+    background: url(https://mkx.tw/plurk);
+    background-attachment: fixed;
+    background-size: cover;
+    /* background-size: 100%; */
+    font-family: century gothic;
+}
+
+.adsense {
+    height: 0!important;
+    opacity: 0!important;
+    width: 0!important;
+    display: none;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
