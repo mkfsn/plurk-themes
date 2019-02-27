@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"all": "node-sass style.scss style.css"
+	"lint": "sass-lint *.scss -v -q",
+    "all": "node-sass style.scss style.css"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,7 @@
   "author": "mkfsn",
   "license": "ISC",
   "dependencies": {
-    "node-sass": "4.11.0"
+    "node-sass": "4.11.0",
+    "sass-lint": "1.12.1"
   }
 }
