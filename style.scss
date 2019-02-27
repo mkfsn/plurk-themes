@@ -1,0 +1,129 @@
+// 設定整頁背景
+body,
+html {
+    background: url('https://mkx.tw/plurk');
+    background-attachment: fixed;
+    background-size: cover;
+    // background-size: 100%;
+    font-family: century gothic;
+}
+
+.adsense {
+    border: 0 !important;
+    display: none;
+    height: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    padding: 0 !important;
+    width: 0 !important;
+}
+
+#dashboard_holder {
+    left: 0;
+    min-width: 70px;
+    padding: 0;
+    position: fixed;
+    top: 42px;
+    width: 70px;
+    z-index: 999999;
+}
+
+#plurk-dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 70px;
+
+    .dash-group-left    {
+        .segment-content {
+            &:first-child {
+                height: 70px !important;
+                // animation
+                transition: width 2s, height 2s;
+                width: 70px !important;
+
+                & + .segment-content {
+                    border: 0;
+                    height: 0 !important;
+                    margin: 0;
+                    overflow: hidden;
+                    padding: 0;
+                    width: 0 !important;
+                }
+
+                #dash-profile {
+                    display: grid;
+                    grid-template: 'profile-pic full-name    profile-icon' 1fr
+                                   'profile-pic profile-info profile-icon' 1fr / 1fr 0 0;
+                    height: 60px;
+                    overflow: hidden;
+                    // animation
+                    transition: width 2s, height 2s;
+                    width: 60px;
+                }
+
+                &:hover {
+                    height: 96px !important;
+                    // animation
+                    transition: width 2s, height 2s;
+                    width: 303px !important;
+
+                    & + .segment-content {
+                        border: 0;
+                        height: 96px !important;
+                        margin: 0;
+                        margin-top: 10px;
+                        padding: 0;
+                        width: 303px !important;
+                    }
+
+                    #dash-profile {
+                        display: grid;
+                        grid-template: 'profile-pic full-name    profile-icon' 1fr
+                                       'profile-pic profile-info profile-icon' 1fr / 1fr 2fr 10px;
+                        height: 86px;
+                        overflow: unset;
+                        // animation
+                        transition: width 2s, height 2s;
+                        width: 303px;
+                    }
+
+                }
+
+            } // :first-child
+        } // .segment-content:first-child
+    } // .dash-group-left
+
+    .dash-group-right {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+#dash-profile {
+    .profile-pic {
+        grid-area: profile-pic;
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+    & > #full_name {
+        grid-area: full-name;
+    }
+
+    & > .profile-info {
+        grid-area: profile-info;
+    }
+
+    & > .profile-icons {
+        grid-area: profile-info;
+    }
+}
+
+
+
+
+
+
+
+
+
