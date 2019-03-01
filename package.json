@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"lint": "sass-lint *.scss -v -q",
+    "lint": "sass-lint *.scss -v -q",
     "all": "node-sass style.scss style.css"
   },
   "repository": {
