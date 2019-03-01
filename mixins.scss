@@ -1,0 +1,59 @@
+@import 'colors';
+
+@mixin sidebarIcon($content: "") {
+    &:before {
+        background-color: map-get($colors, iconBackground);
+        border-radius: 50%;
+        content: $content;
+        display: block;
+        font-family: 'PlurkIconFont' !important;
+        font-size: 30px;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 10px;
+        margin-right: 5px;
+        margin-left: 5px;
+        padding: 10px;
+        width: 30px;
+    }
+}
+
+@mixin sizeOfBox($width: 0, $height: 0) {
+    height: $height;
+    width: $width;
+}
+
+@mixin sizeOfBoxWithTransition($width: 0, $height: 0, $transition...) {
+    @include sizeOfBox($width, $height);
+    transition: $transition;
+}
+
+@mixin dash-group($icon: '', $width: 0, $height: 0) {
+    width: unset;
+    @include sidebarIcon($icon);
+    & > .dash-segment {
+        overflow: hidden;
+        @include sizeOfBoxWithTransition(0, 0, width 0.5s ease-in-out, height 0.5s ease-in-out);
+    }
+    &:hover > .dash-segment {
+        @include sizeOfBoxWithTransition($width, $height, width 1s ease-in-out, height 1s ease-in-out);
+    }
+}
+
+@mixin dash-segment($icon: '', $width: 0, $height: 0) {
+    display: flex;
+    width: unset;
+    @include sidebarIcon($icon);
+    & > .segment-content {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        @include sizeOfBoxWithTransition(0, 0, width 1s ease-in-out, height 1s ease-in-out);
+    }
+    &:hover > .segment-content {
+        background-color: rgba(34, 34, 34, 0.9);
+        padding: 10px;
+        margin-top: 10px;
+        @include sizeOfBoxWithTransition($width, $height, width 1s ease-in-out, height 1s ease-in-out);
+    }
+}

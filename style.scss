@@ -1,16 +1,17 @@
+@import 'mixins';
+
 // 設定整頁背景
 body,
 html {
     background: url('https://mkx.tw/plurk');
     background-attachment: fixed;
     background-size: cover;
-    // background-size: 100%;
     font-family: century gothic;
 }
 
 .adsense {
     border: 0 !important;
-    display: none;
+    display: none !important;
     height: 0 !important;
     margin: 0 !important;
     opacity: 0 !important;
@@ -18,112 +19,77 @@ html {
     width: 0 !important;
 }
 
+// Put dashboard to sidebar
 #dashboard_holder {
+    $topbar-height: 42px;
+
     left: 0;
-    min-width: 70px;
+    margin-bottom: 0;
+    min-width: 60px;
     padding: 0;
-    position: fixed;
-    top: 42px;
-    width: 70px;
+    position: absolute;
+    top: $topbar-height;
+    width: auto;
     z-index: 999999;
 }
 
 #plurk-dashboard {
     display: flex;
     flex-direction: column;
-    width: 70px;
 
-    .dash-group-left    {
-        .segment-content {
-            &:first-child {
-                height: 70px !important;
-                // animation
-                transition: width 2s, height 2s;
-                width: 70px !important;
+    // reorder the 3 components
+    $ordered-selectors: ('.dash-group-form', '.dash-group-left', '.dash-group-right');
+    @each $selector in $ordered-selectors {
+        #{$selector} {
+            display: flex;
+            order: index($ordered-selectors, $selector);
+        }
+    }
 
-                & + .segment-content {
-                    border: 0;
-                    height: 0 !important;
-                    margin: 0;
-                    overflow: hidden;
-                    padding: 0;
-                    width: 0 !important;
-                }
+    // dash groups
+    $groups: (
+        dash-group-form: ('\f011', 40vw, auto),
+        dash-group-left: ('\f02b', 258px, 192px),
+    );
+    @each $class, $attr in $groups {
+        .#{$class} {
+            @include dash-group(nth($attr, 1), nth($attr, 2), nth($attr, 3));
+        }
+    }
 
-                #dash-profile {
-                    display: grid;
-                    grid-template: 'profile-pic full-name    profile-icon' 1fr
-                                   'profile-pic profile-info profile-icon' 1fr / 1fr 0 0;
-                    height: 60px;
-                    overflow: hidden;
-                    // animation
-                    transition: width 2s, height 2s;
-                    width: 60px;
-                }
+    & > .dash-group-form {
+        &:hover > .dash-segment {
+            min-height: 106px;
+        }
+    }
 
-                &:hover {
-                    height: 96px !important;
-                    // animation
-                    transition: width 2s, height 2s;
-                    width: 303px !important;
-
-                    & + .segment-content {
-                        border: 0;
-                        height: 96px !important;
-                        margin: 0;
-                        margin-top: 10px;
-                        padding: 0;
-                        width: 303px !important;
-                    }
-
-                    #dash-profile {
-                        display: grid;
-                        grid-template: 'profile-pic full-name    profile-icon' 1fr
-                                       'profile-pic profile-info profile-icon' 1fr / 1fr 2fr 10px;
-                        height: 86px;
-                        overflow: unset;
-                        // animation
-                        transition: width 2s, height 2s;
-                        width: 303px;
-                    }
-
-                }
-
-            } // :first-child
-        } // .segment-content:first-child
-    } // .dash-group-left
-
-    .dash-group-right {
-        display: flex;
+    // dash segments
+    & > .dash-group-right {
         flex-direction: column;
+
+        $segments: (
+            dash-segment-stats:   ('\f035', 715px, 190px),
+            dash-segment-friends: ('\f017', 300px, 165px),
+            dash-segment-fans:    ('\f016', 660px, 130px),
+            dash-segment-award:   ('\f018', 400px, 135px),
+        );
+        @each $class, $attr in $segments {
+            .#{$class} {
+                @include dash-segment(nth($attr, 1), nth($attr, 2), nth($attr, 3));
+            }
+        }
     }
 }
 
-#dash-profile {
-    .profile-pic {
-        grid-area: profile-pic;
-        height: 100% !important;
-        width: 100% !important;
-    }
-
-    & > #full_name {
-        grid-area: full-name;
-    }
-
-    & > .profile-info {
-        grid-area: profile-info;
-    }
-
-    & > .profile-icons {
-        grid-area: profile-info;
+#timeline_holder {
+    & > .browse_button {
+        bottom: 15px;
+        height: 90px;
+        top: unset !important;
     }
 }
 
-
-
-
-
-
-
-
-
+#footer {
+    padding-bottom: 20px;
+    padding-top: 90px;
+}
