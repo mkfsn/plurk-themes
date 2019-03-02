@@ -68,7 +68,7 @@ html {
         flex-direction: column;
 
         $segments: (
-            dash-segment-stats:   ('\f035', 715px, 190px),
+            dash-segment-stats:   ('\f035', auto, auto),
             dash-segment-friends: ('\f017', 300px, 165px),
             dash-segment-fans:    ('\f016', 660px, 130px),
             dash-segment-award:   ('\f018', 400px, 135px),
@@ -77,6 +77,11 @@ html {
             .#{$class} {
                 @include dash-segment(nth($attr, 1), nth($attr, 2), nth($attr, 3));
             }
+        }
+
+        .dash-segment-stats:hover .segment-content {
+            min-width: 710px;
+            min-height: 120px;
         }
     }
 }
